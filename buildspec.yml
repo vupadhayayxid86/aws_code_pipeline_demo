@@ -1,0 +1,29 @@
+# Do not change version. This is the version of aws buildspec, not the version of your buildspec file.
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo Installing Mocha...
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling the Node.js code
+      - zip -r function.zip .
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - aws lambda update-function-code --function-name CodePipeline-Lambda-Demo --zip-file fileb://function.zip
+
+artifacts:
+  files:
+    - job.js
+    - package.json
+    - function.zip

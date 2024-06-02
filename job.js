@@ -3,5 +3,4 @@ export const handler=(event)=>{
     console.log(event)
     console.log("This is after deployment....")
     console.log("Exiting Lambda Function....After Changes")
-    console.log("Changes to make new commit..")
 }
